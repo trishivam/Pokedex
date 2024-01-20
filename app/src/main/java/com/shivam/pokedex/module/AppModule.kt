@@ -20,7 +20,7 @@ object AppModule {
     @Singleton
     fun provideRetrofit(): Retrofit = Retrofit
         .Builder()
-        .baseUrl("https://pokeapi.co/api/v2/pokemon/ditto")
+        .baseUrl("https://pokeapi.co/api/v2/")
         .addConverterFactory(
             Json {
                 ignoreUnknownKeys = true

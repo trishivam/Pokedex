@@ -7,9 +7,9 @@ import retrofit2.http.Path
 
 interface PokedexApiService {
 
-    @GET("Volume")
+    @GET("pokemon/ditto")
     suspend fun getAllPokemon():PokedexDataModel
 
-    @GET("Volume/{id}")
-    suspend fun getAllPokemonInfomation(@Path("id")id: String): PokedexInformationModel
+    @GET("pokemon/ditto/{name}")
+    suspend fun getAllPokemonInfomation(@Path("name")name: String): PokedexInformationModel
 }
