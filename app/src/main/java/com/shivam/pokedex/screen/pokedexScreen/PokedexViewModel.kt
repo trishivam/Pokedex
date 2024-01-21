@@ -28,8 +28,8 @@ class PokedexViewModel @Inject constructor(
 //                Log.d(TAG, "getAllPokemons: ${apiService.getAllPokemon()}")
             var pokemonResponse = apiService.getAllPokemon()
             for (pokemon in pokemonResponse.results)
-//                pokemonDataList = listOf( apiService.getPokemon(name = pokemon.name))
-                Log.d(TAG, "getPokemons: ${pokemon} ")
+//                pokemonDataList = apiService.getPokemon(name = pokemon.name)
+                Log.d(TAG, "getPokemons: ${apiService.getPokemon(name = pokemon.name)} ")
 
         }
 
