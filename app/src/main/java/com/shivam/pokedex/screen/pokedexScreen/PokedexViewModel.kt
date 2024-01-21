@@ -6,11 +6,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.shivam.pokedex.data.PokedexDataModel
+import com.shivam.pokedex.data.PokemonDataModel
+import com.shivam.pokedex.data.PokemonInfoModel
 import com.shivam.pokedex.network.PokedexApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
-import java.net.UnknownHostException
 import javax.inject.Inject
 
 var TAG = "pokemon"
@@ -18,25 +18,18 @@ var TAG = "pokemon"
 class PokedexViewModel @Inject constructor(
     private val apiService:PokedexApiService
 ): ViewModel() {
-    var pokemon by mutableStateOf(PokedexDataModel())
     var loading by mutableStateOf(false)
     var errorMessage by mutableStateOf("")
-    fun getAllPokemon(){
-        loading = true
+    var pokemonDataList by mutableStateOf(PokemonDataModel())
+
+    init{
         viewModelScope.launch {
-            try {
-                var pokemon = apiService.getAllPokemon()
-                Log.d(TAG, "getAllPokemon: ${pokemon}")
-            }
-            catch (e: UnknownHostException){
-                errorMessage = "Check your Internet"
-                e.printStackTrace()
-            }
-            catch (e: Exception) {
-                errorMessage= "Something went wrong"
-                e.printStackTrace()
-            }
-            loading = false
+//                Log.d(TAG, "getAllPokemons: ${apiService.getAllPokemon()}")
+            var pokemonResponse = apiService.getAllPokemon()
+            for (pokemon in pokemonResponse.results)
+                pokemonDataList = apiService.getPokemon(name = pokemon.name)
+
         }
+        Log.d(TAG, "getPokemons: ${pokemonDataList} ")
     }
 }
