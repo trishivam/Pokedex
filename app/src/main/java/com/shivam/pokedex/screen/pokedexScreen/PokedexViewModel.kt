@@ -20,16 +20,18 @@ class PokedexViewModel @Inject constructor(
 ): ViewModel() {
     var loading by mutableStateOf(false)
     var errorMessage by mutableStateOf("")
-    var pokemonDataList by mutableStateOf(PokemonDataModel())
+
+//    var pokemonDataList: List<PokemonDataModel> by mutableStateOf()
 
     init{
         viewModelScope.launch {
 //                Log.d(TAG, "getAllPokemons: ${apiService.getAllPokemon()}")
             var pokemonResponse = apiService.getAllPokemon()
             for (pokemon in pokemonResponse.results)
-                pokemonDataList = apiService.getPokemon(name = pokemon.name)
+//                pokemonDataList = listOf( apiService.getPokemon(name = pokemon.name))
+                Log.d(TAG, "getPokemons: ${pokemon} ")
 
         }
-        Log.d(TAG, "getPokemons: ${pokemonDataList} ")
+
     }
 }

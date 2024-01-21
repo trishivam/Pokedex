@@ -10,5 +10,5 @@ fun PokedexHomeScreen(
     viewModel: PokedexViewModel = hiltViewModel(),
     onImageClicked:(String) -> Unit
 ) {
-    Text(text = "${viewModel.pokemonDataList.name}")
+//    Text(text = "${viewModel.pokemonDataList.name}")
 }
