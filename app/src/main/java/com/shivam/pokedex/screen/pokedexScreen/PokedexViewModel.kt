@@ -6,8 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.shivam.pokedex.data.PokemonDataModel
-import com.shivam.pokedex.data.PokemonInfoModel
+import com.shivam.pokedex.Model.PokemonData
 import com.shivam.pokedex.network.PokedexApiService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -21,17 +20,18 @@ class PokedexViewModel @Inject constructor(
     var loading by mutableStateOf(false)
     var errorMessage by mutableStateOf("")
 
-//    var pokemonDataList: List<PokemonDataModel> by mutableStateOf()
+    var pokemonDataList by mutableStateOf(listOf<PokemonData>())
+
 
     init{
         viewModelScope.launch {
 //                Log.d(TAG, "getAllPokemons: ${apiService.getAllPokemon()}")
             var pokemonResponse = apiService.getAllPokemon()
             for (pokemon in pokemonResponse.results)
-//                pokemonDataList = apiService.getPokemon(name = pokemon.name)
-                Log.d(TAG, "getPokemons: ${apiService.getPokemon(name = pokemon.name)} ")
+                pokemonDataList = listOf(apiService.getPokemon(name = pokemon.name))
 
         }
+        Log.d(TAG, "List Of Pkemon: ${pokemonDataList}")
 
     }
 }
