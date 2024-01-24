@@ -30,5 +30,5 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providePokedecApiServices(retrofit: Retrofit) = retrofit.create(PokedexApiService::class.java)
+    fun providePokedexApiServices(retrofit: Retrofit) = retrofit.create(PokedexApiService::class.java)
 }
