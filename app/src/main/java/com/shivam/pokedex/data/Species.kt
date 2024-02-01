@@ -1,9 +1,10 @@
-package com.shivam.pokedex.Model
+package com.shivam.pokedex.data
 
 import kotlinx.serialization.Serializable
 
+
 @Serializable
-data class StatX(
+data class Species(
     val name: String,
     val url: String
 )

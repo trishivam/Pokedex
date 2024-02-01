@@ -1,4 +1,4 @@
-package com.shivam.pokedex.Model
+package com.shivam.pokedex.data
 
 import kotlinx.serialization.Serializable
 

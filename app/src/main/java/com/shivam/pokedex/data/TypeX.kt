@@ -1,9 +1,9 @@
-package com.shivam.pokedex.Model
+package com.shivam.pokedex.data
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Item(
+data class TypeX(
     val name: String,
     val url: String
 )

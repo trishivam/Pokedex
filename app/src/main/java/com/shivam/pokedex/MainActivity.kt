@@ -13,6 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.shivam.pokedex.navigation.NavigationHost
 import com.shivam.pokedex.screen.pokedexDetailScreen.PokedexInfoScreen
 import com.shivam.pokedex.screen.pokedexScreen.PokedexHomeScreen
+import com.shivam.pokedex.screen.pokedexScreen.PokemonDetailsScreen
 import com.shivam.pokedex.ui.theme.PokedexTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,6 +29,7 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     NavigationHost()
+//                    PokemonDetailsScreen()
                 }
             }
         }
