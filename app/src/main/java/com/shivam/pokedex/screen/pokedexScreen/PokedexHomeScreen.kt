@@ -37,23 +37,29 @@ fun PokedexHomeScreen(
     viewModel: PokedexViewModel = hiltViewModel(),
     onImageClicked:(String) -> Unit
 ) {
-    Column {
+    Column(
+        modifier = Modifier.background(Color.White)
+    ){
         Row(
             horizontalArrangement = Arrangement.spacedBy(10.dp),
             modifier = Modifier
-                .background(Color.Green)
+                .background(Color(135, 206, 250))
                 .fillMaxWidth()
         ) {
             Text(
                 text = "Pokedex" ,
                 fontWeight = FontWeight.Bold,
+                color = Color.Black,
                 fontFamily = FontFamily.SansSerif,
                 fontSize = 20.sp,
                 modifier = Modifier.padding(20.dp)
             )
         }
+//        Text(
+//            text = "Hello! Pokemon"
+//        )
 
-        Spacer(modifier = Modifier.padding(10.dp))
+        Spacer(modifier = Modifier.padding(8.dp))
 
         Column(
             modifier = Modifier.fillMaxSize(),

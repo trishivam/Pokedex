@@ -38,16 +38,16 @@ class PokedexViewModel @Inject constructor(
             pokemonNameList.results.forEach {
                 try {
                     val pokemonData = apiService.getPokemon(it.name)
-                    Log.d(TAG, "getPokemons: ${pokemonData}")
+//                    Log.d(TAG, "getPokemons: ${pokemonData}")
                     pokemondataList.add(pokemonData)
-                    Log.d(TAG, "getAllPokemons: ${pokemondataList}")
+//                    Log.d(TAG, "getAllPokemons: ${pokemondataList}")
                 } catch (e: UnknownHostException) {
                     errorMessage = "Received error while fetching Pokemon data for name"
                     e.printStackTrace()
                 }
                 catch (e: Exception){
                     errorMessage = "Error in fetching pokemon list"
-                    Log.d(TAG, "Error in fetching pokemon list: ${e.message}")
+//                    Log.d(TAG, "Error in fetching pokemon list: ${e.message}")
                     e.printStackTrace()
                 }
             }

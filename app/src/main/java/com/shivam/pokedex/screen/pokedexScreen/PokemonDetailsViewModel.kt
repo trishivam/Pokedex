@@ -14,25 +14,24 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 import javax.inject.Inject
+import kotlin.math.log
 
 @HiltViewModel
 class PokemonDetailsViewModel @Inject constructor(
     private val apiService: PokedexApiService
 ) : ViewModel() {
-
     var loading by mutableStateOf(false)
     var errorMessage by mutableStateOf("")
-
-
     var pokemoninfo by mutableStateOf(PokemonDataResponse())
-
     fun getPokemonInfo(name :String)
     {
         loading = true
         viewModelScope.launch {
             try {
                 var data = apiService.getPokemon(name = name)
+                Log.d(TAG, "getPokemonInfo: ${data}")
                 pokemoninfo = data
+                Log.d(TAG, "getPokemonInformation: ${pokemoninfo}")
             }
             catch (e: UnknownHostException){
                 errorMessage = "Check your Internet"
