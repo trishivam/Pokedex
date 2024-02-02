@@ -132,41 +132,47 @@ fun PokemonDetailsScreen(
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier
                     )
-
+                    Spacer(modifier = Modifier.padding(4.dp))
+                    Text(
+                        text = "Weight",
+                        color = Color.Black,
+                        textAlign = TextAlign.Center,
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(start = 4.dp)
+                    )
                 }
 
                 Spacer(modifier = Modifier.padding(30.dp))
-                Text(
-                    text = "${viewModel.pokemoninfo.height} M",
-                    color = Color.Black,
-                    textAlign = TextAlign.Center,
-                    fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-//                        .padding(start = 10.dp)
-                )
+                Column {
+                    Text(
+                        text = "${viewModel.pokemoninfo.height} M",
+                        color = Color.Black,
+                        textAlign = TextAlign.Center,
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    Spacer(modifier = Modifier.padding(4.dp))
+                    Text(
+                        text = "Height",
+                        color = Color.Black,
+                        textAlign = TextAlign.Center,
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(start = 4.dp)
+                    )
+                }
+
             }
-            Row (
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically,
-            ){
+            Row {
                 Text(
-                    text = "Weight",
-                    color = Color.Black,
-                    textAlign = TextAlign.Center,
-                    fontSize = 10.sp,
-                    fontWeight = FontWeight.Bold,
+                    text = "Base Stats",
+                    fontSize = 20.sp,
                     modifier = Modifier
-                )
-                Spacer(modifier = Modifier.padding(30.dp))
-                Text(
-                    text = "Height",
-                    color = Color.Black,
+                        .padding(top = 15.dp),
                     textAlign = TextAlign.Center,
-                    fontSize = 10.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-//                        .padding(start = 10.dp)
+                    color = Color.Black,
                 )
             }
         }
