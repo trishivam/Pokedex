@@ -51,10 +51,8 @@ fun PokemonDetailsScreen(
                 .fillMaxWidth(),
         )
         {
-
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-//                horizontalArrangement  = Arrangement.SpaceBetween,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 10.dp)
@@ -80,11 +78,28 @@ fun PokemonDetailsScreen(
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(start = 20.dp)
                 )
-                Text(
-                    text = "#00${viewModel.pokemoninfo.id}",
-                    color = Color.Black,
-                    modifier =Modifier.padding(start = 170.dp, end = 10.dp)
-                )
+                var id = viewModel.pokemoninfo.id
+                if(id<10){
+                    Text(
+                        text = "#00${id}",
+                        color = Color.Black,
+                        modifier =Modifier.padding(start = 160.dp, end = 10.dp)
+                    )
+                }
+                else if (id>10 && id < 100){
+                    Text(
+                        text = "#0${id}",
+                        color = Color.Black,
+                        modifier =Modifier.padding(start = 160.dp, end = 10.dp)
+                    )
+                }
+                else{
+                    Text(
+                        text = "#${id}",
+                        color = Color.Black,
+                        modifier =Modifier.padding(start = 160.dp, end = 10.dp)
+                    )
+                }
             }
             AsyncImage(
                 model = viewModel.pokemoninfo.sprites.front_default,

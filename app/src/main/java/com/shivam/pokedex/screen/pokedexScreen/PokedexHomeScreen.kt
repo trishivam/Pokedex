@@ -30,6 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.shivam.pokedex.data.PokemonDataResponse
+import com.shivam.pokedex.data.Sprites
 
 
 @Composable
@@ -95,24 +97,19 @@ fun PokedexHomeScreen(
                                 defaultElevation = 4.dp
                             )
                         ) {
-                            Column(
-                                modifier = Modifier.background(Color.Cyan)
-                            ){
-                                AsyncImage(
-                                    model = pokemon.sprites.front_default,
-                                    contentDescription = "front_default",
+                            if(viewModel.loading){
+                                CircularProgressIndicator(
+                                    color = Color.Blue,
                                     modifier = Modifier
-                                        .fillMaxWidth()
-                                        .background(Color.Cyan)
-                                        .size(120.dp)
-                                        .clickable(onClick = { onImageClicked(pokemon.name) }),
+                                        .fillMaxHeight()
+                                        .wrapContentHeight(Alignment.CenterVertically)
                                 )
-                                Text(
-                                    text = pokemon.name,
-                                    modifier = Modifier
-                                        .align(Alignment.CenterHorizontally).padding(bottom = 8.dp),
-                                    color = Color.Black
-                                )
+                            }
+                            else if(viewModel.errorMessage.isNotEmpty()){
+                                Text(text = viewModel.errorMessage)
+                            }
+                            else{
+                                getPokemonIconAndName(pokemon.sprites, pokemon.name, onImageClicked)
                             }
                         }
                     }
@@ -120,6 +117,37 @@ fun PokedexHomeScreen(
             }
         }
     }
+}
+
+
+
+@Composable
+fun getPokemonIconAndName(
+    sprites: Sprites,
+    name: String,
+    onImageClicked: (String)-> Unit
+) {
+    Column(
+        modifier = Modifier.background(Color.Cyan)
+    ) {
+        AsyncImage(
+            model = sprites.front_default,
+            contentDescription = "front_default",
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(Color.Cyan)
+                .size(120.dp)
+                .clickable(onClick = { onImageClicked (name) }),
+        )
+        Text(
+            text = name,
+            modifier = Modifier
+                .align(Alignment.CenterHorizontally)
+                .padding(bottom = 8.dp),
+            color = Color.Black
+        )
+    }
+
 }
 
 
