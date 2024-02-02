@@ -25,7 +25,24 @@ class PokedexViewModel @Inject constructor(
 
     var pokemondataList = mutableStateListOf<PokemonDataResponse>()
 
-
+    var pokemon by mutableStateOf(PokemonDataResponse)
+    fun getPokemonByName(name: String){
+        loading = true
+        viewModelScope.launch {
+                try {
+                    val pokemonData = apiService.getPokemon(name)
+//                    pokemon = pokemonData
+                } catch (e: UnknownHostException) {
+                    errorMessage = "Received error while fetching Pokemon data for name"
+                    e.printStackTrace()
+                }
+                catch (e: Exception){
+                    errorMessage = "Error in fetching pokemon list"
+                    e.printStackTrace()
+                }
+            }
+        loading = false
+        }
     init {
         getAllPokemons()
     }

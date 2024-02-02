@@ -204,6 +204,13 @@ fun PokemonDetailsScreen(
             viewModel.pokemoninfo.stats.forEach{
                 ProgressRow(stat = it.base_stat.toFloat(), name = it.stat.name)
             }
+            
+            Text(
+                text = "Man has plenty to learn from nature and from Pokémon",
+                color = Color.Black,
+                fontSize = 10.sp,
+                modifier = Modifier.padding(8.dp)
+            )
         }
     }
 }
