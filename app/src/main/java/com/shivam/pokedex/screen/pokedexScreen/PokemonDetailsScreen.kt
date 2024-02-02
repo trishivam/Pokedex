@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -29,6 +30,7 @@ import androidx.compose.ui.res.fontResource
 
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -52,7 +54,7 @@ fun PokemonDetailsScreen(
                 .background(Color.Cyan)
                 .fillMaxWidth(),
         )
-            {
+        {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement  = Arrangement.SpaceBetween,
@@ -73,14 +75,14 @@ fun PokemonDetailsScreen(
                     modifier =Modifier.padding(end = 10.dp)
                 )
             }
-                 AsyncImage(
-                        model = viewModel.pokemoninfo.sprites.front_default,
-                        contentDescription = "front_default",
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .fillMaxSize()
-                            .size(320.dp)
-                 )
+            AsyncImage(
+                model = viewModel.pokemoninfo.sprites.front_default,
+                contentDescription = "front_default",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .fillMaxSize()
+                    .size(320.dp)
+            )
         }
         Column(
             modifier = Modifier
@@ -89,15 +91,15 @@ fun PokemonDetailsScreen(
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ){
-                Text(
-                    text = "${viewModel.pokemoninfo.name}",
-                    fontSize = 20.sp,
-                    modifier = Modifier
-                        .padding(top = 15.dp),
-                    textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black,
-                )
+            Text(
+                text = "${viewModel.pokemoninfo.name}",
+                fontSize = 20.sp,
+                modifier = Modifier
+                    .padding(top = 15.dp),
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+            )
             Row(
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
@@ -164,17 +166,37 @@ fun PokemonDetailsScreen(
                 }
 
             }
-            Row {
-                Text(
-                    text = "Base Stats",
-                    fontSize = 20.sp,
-                    modifier = Modifier
-                        .padding(top = 15.dp),
-                    textAlign = TextAlign.Center,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Black,
-                )
-            }
+            Text(
+                text = "Base Stats",
+                fontSize = 20.sp,
+                modifier = Modifier
+                    .padding(top = 15.dp),
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                color = Color.Black,
+            )
         }
     }
+}
+
+
+@Composable
+fun ProgressRow(
+    stat: Float,
+    name: String
+) {
+    Row (
+        modifier = Modifier.fillMaxWidth()
+    ){
+        Text(text = name)
+        LinearProgressIndicator(
+            progress = stat / 300
+        )
+    }
+}
+
+@Preview(showBackground = true, widthDp = 320)
+@Composable
+fun ProgressRowPreview() {
+    ProgressRow(name = "HP", stat = 48f)
 }
