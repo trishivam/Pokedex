@@ -25,6 +25,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.fontResource
 
@@ -36,6 +37,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
 import java.time.format.TextStyle
+import java.util.Random
 
 
 @Composable
@@ -46,7 +48,6 @@ fun PokemonDetailsScreen(
     LaunchedEffect(Unit){
         viewModel.getPokemonInfo(name = name)
     }
-//    var wieight:Double = (viewModel.pokemoninfo.weight)/10
     Column {
         Column(
             modifier = Modifier
@@ -93,7 +94,7 @@ fun PokemonDetailsScreen(
         ){
             Text(
                 text = "${viewModel.pokemoninfo.name}",
-                fontSize = 20.sp,
+                fontSize = 30.sp,
                 modifier = Modifier
                     .padding(top = 15.dp),
                 textAlign = TextAlign.Center,
@@ -168,13 +169,16 @@ fun PokemonDetailsScreen(
             }
             Text(
                 text = "Base Stats",
-                fontSize = 20.sp,
+                fontSize = 30.sp,
                 modifier = Modifier
-                    .padding(top = 15.dp),
+                    .padding(top = 15.dp, bottom = 15.dp),
                 textAlign = TextAlign.Center,
                 fontWeight = FontWeight.Bold,
                 color = Color.Black,
             )
+            viewModel.pokemoninfo.stats.forEach{
+                ProgressRow(stat = it.base_stat.toFloat(), name = it.stat.name)
+            }
         }
     }
 }
@@ -188,9 +192,19 @@ fun ProgressRow(
     Row (
         modifier = Modifier.fillMaxWidth()
     ){
-        Text(text = name)
+        Text(
+            text = name,
+            color = Color.Black,
+            fontSize = 15.sp,
+            modifier = Modifier.padding(8.dp).width(100.dp)
+        )
         LinearProgressIndicator(
-            progress = stat / 300
+            progress = stat / 300,
+            color = Color.Blue,
+            trackColor = Color(220,220,220),
+            modifier = Modifier.padding(8.dp)
+                .clip(RoundedCornerShape(16.dp))
+                .height(9.dp)
         )
     }
 }
