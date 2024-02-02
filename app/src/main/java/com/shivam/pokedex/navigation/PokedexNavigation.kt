@@ -67,7 +67,8 @@ fun NavigationHost(
             })
         ){entry ->
             PokemonDetailsScreen(
-                name = entry.arguments?.getString("name","")?:""
+                name = entry.arguments?.getString("name","")?:"",
+                onBackButtonClicked = { navController.popBackStack() }
             )
         }
     }

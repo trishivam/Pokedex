@@ -1,16 +1,11 @@
 package com.shivam.pokedex.screen.pokedexScreen
-
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
-
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,17 +13,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.fontResource
-
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,14 +32,13 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
-import java.time.format.TextStyle
-import java.util.Random
 
 
 @Composable
 fun PokemonDetailsScreen(
     viewModel: PokemonDetailsViewModel = hiltViewModel(),
-    name: String
+    name: String,
+    onBackButtonClicked: () -> Unit
 ) {
     LaunchedEffect(Unit){
         viewModel.getPokemonInfo(name = name)
@@ -56,24 +51,39 @@ fun PokemonDetailsScreen(
                 .fillMaxWidth(),
         )
         {
+
             Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement  = Arrangement.SpaceBetween,
+//                horizontalArrangement  = Arrangement.SpaceBetween,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 10.dp)
             ) {
+                IconButton(
+                    onClick = { onBackButtonClicked }
+                ) {
+                    Icon(
+                        imageVector = Icons.Filled.ArrowBack,
+                        contentDescription = "Back",
+                        tint = Color.Black,
+                        modifier = Modifier.clickable(
+                            onClick = onBackButtonClicked
+
+                        )
+                    )
+                }
+
                 Text(
                     text = "Pokedex",
                     color = Color.Black,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(start = 50.dp)
+                    modifier = Modifier.padding(start = 20.dp)
                 )
                 Text(
                     text = "#00${viewModel.pokemoninfo.id}",
                     color = Color.Black,
-                    modifier =Modifier.padding(end = 10.dp)
+                    modifier =Modifier.padding(start = 170.dp, end = 10.dp)
                 )
             }
             AsyncImage(
@@ -196,13 +206,16 @@ fun ProgressRow(
             text = name,
             color = Color.Black,
             fontSize = 15.sp,
-            modifier = Modifier.padding(8.dp).width(100.dp)
+            modifier = Modifier
+                .padding(8.dp)
+                .width(100.dp)
         )
         LinearProgressIndicator(
             progress = stat / 300,
             color = Color.Blue,
             trackColor = Color(220,220,220),
-            modifier = Modifier.padding(8.dp)
+            modifier = Modifier
+                .padding(8.dp)
                 .clip(RoundedCornerShape(16.dp))
                 .height(9.dp)
         )
