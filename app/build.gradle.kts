@@ -91,6 +91,9 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
 
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
+
+    // Lottie
+    implementation("com.airbnb.android:lottie-compose:4.0.0")
 }
 
 

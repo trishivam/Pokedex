@@ -15,12 +15,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
     val contentType = "application/json".toMediaType()
-
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit = Retrofit
         .Builder()
-        .baseUrl("https://pokeapi.co/api/v2/pokemon/ditto")
+        .baseUrl("https://pokeapi.co/api/v2/")
         .addConverterFactory(
             Json {
                 ignoreUnknownKeys = true
