@@ -1,6 +1,5 @@
 package com.shivam.pokedex.screen.pokedexScreen
 
-import android.util.Log
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -14,7 +13,6 @@ import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 import javax.inject.Inject
 
-var TAG = "pokemon"
 @HiltViewModel
 class PokedexViewModel @Inject constructor(
     private val apiService:PokedexApiService

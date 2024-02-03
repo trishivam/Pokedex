@@ -71,7 +71,6 @@ fun PokemonDetailsScreen(
                         )
                     )
                 }
-
                 Text(
                     text = "Pokedex",
                     color = Color.Black,
@@ -80,14 +79,14 @@ fun PokemonDetailsScreen(
                     modifier = Modifier.padding(start = 20.dp)
                 )
                 var id = viewModel.pokemoninfo.id
-                if(id<10){
+                if(id<10) {
                     Text(
                         text = "#00${id}",
                         color = Color.Black,
                         modifier =Modifier.padding(start = 160.dp, end = 10.dp)
                     )
                 }
-                else if (id>10 && id < 100){
+                else if (id>10 && id < 100) {
                     Text(
                         text = "#0${id}",
                         color = Color.Black,
@@ -191,7 +190,6 @@ fun PokemonDetailsScreen(
                         modifier = Modifier.padding(start = 4.dp)
                     )
                 }
-
             }
             Text(
                 text = "Base Stats",
@@ -205,7 +203,7 @@ fun PokemonDetailsScreen(
             viewModel.pokemoninfo.stats.forEach{
                 ProgressRow(stat = it.base_stat.toFloat(), name = it.stat.name)
             }
-            
+
             Text(
                 text = "Man has plenty to learn from nature and from Pokémon",
                 color = Color.Black,
@@ -215,7 +213,6 @@ fun PokemonDetailsScreen(
         }
     }
 }
-
 
 @Composable
 fun ProgressRow(
@@ -243,10 +240,4 @@ fun ProgressRow(
                 .height(9.dp)
         )
     }
-}
-
-@Preview(showBackground = true, widthDp = 320)
-@Composable
-fun ProgressRowPreview() {
-    ProgressRow(name = "HP", stat = 48f)
 }
