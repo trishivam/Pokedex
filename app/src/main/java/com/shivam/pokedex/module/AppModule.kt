@@ -15,7 +15,6 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
     val contentType = "application/json".toMediaType()
-
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit = Retrofit

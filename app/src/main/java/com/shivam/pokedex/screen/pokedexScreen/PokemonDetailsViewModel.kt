@@ -2,21 +2,16 @@ package com.shivam.pokedex.screen.pokedexScreen
 
 import android.util.Log
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.graphics.Color
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.shivam.pokedex.data.PokemonDataResponse
 import com.shivam.pokedex.network.PokedexApiService
-import com.shivam.pokedex.utils.PokemonTypeUtils.getTypeColor
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.net.UnknownHostException
 import javax.inject.Inject
-import kotlin.math.log
 
 @HiltViewModel
 class PokemonDetailsViewModel @Inject constructor(
@@ -25,9 +20,7 @@ class PokemonDetailsViewModel @Inject constructor(
     var loading by mutableStateOf(false)
     var errorMessage by mutableStateOf("")
     var pokemoninfo by mutableStateOf(PokemonDataResponse())
-    fun getColor(typeName: String): Color{
-        return getTypeColor(typeName)
-    }
+
     fun getPokemonInfo(name :String)
     {
         loading = true
@@ -38,7 +31,7 @@ class PokemonDetailsViewModel @Inject constructor(
                 pokemoninfo = data
                 Log.d(TAG, "getPokemonInformation: ${pokemoninfo}")
             }
-            catch (e: UnknownHostException){
+            catch (e: UnknownHostException) {
                 errorMessage = "Check your Internet"
                 e.printStackTrace()
             }
@@ -49,5 +42,4 @@ class PokemonDetailsViewModel @Inject constructor(
             loading = false
         }
     }
-
 }

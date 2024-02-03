@@ -1,10 +1,10 @@
 package com.shivam.pokedex.utils
 
 import androidx.compose.ui.graphics.Color
-import com.shivam.pokedex.R
 
+
+// Get Color of Pokemon using TypeName
 object PokemonTypeUtils {
-
     fun getTypeColor(type: String): Color {
         return when (type) {
             "fighting" -> Color(0xFF9F422A)

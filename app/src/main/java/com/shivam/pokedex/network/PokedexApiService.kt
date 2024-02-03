@@ -1,12 +1,10 @@
 package com.shivam.pokedex.network
-
 import com.shivam.pokedex.data.PokemonDataResponse
 import com.shivam.pokedex.data.PokemonListResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface PokedexApiService {
-
     @GET("pokemon?limit=100000&offset=0")
     suspend fun getAllPokemon(): PokemonListResponse
     @GET("pokemon/{name}")

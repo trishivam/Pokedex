@@ -8,7 +8,6 @@ data class PokemonDataResponse(
     val height: Int = 0,
     val id: Int = 0,
     val name: String = "",
-    val species: Species = Species("",""),
     val sprites: Sprites = Sprites(""),
     val stats: List<Stat> = emptyList(),
     val types: List<Type> = emptyList(),

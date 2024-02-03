@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import com.shivam.pokedex.utils.PokemonTypeUtils.getTypeColor
 
 
 @Composable
@@ -142,7 +143,7 @@ fun PokemonDetailsScreen(
                             .width(100.dp)
                             .height(30.dp)
                             .background(
-                                color = viewModel.getColor(it.type.name), RoundedCornerShape(40)
+                                color = getTypeColor(it.type.name), RoundedCornerShape(40)
                             )
                             .align(Alignment.CenterVertically)
                     )

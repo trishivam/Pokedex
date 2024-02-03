@@ -21,50 +21,24 @@ class PokedexViewModel @Inject constructor(
 ): ViewModel() {
     var loading by mutableStateOf(false)
     var errorMessage by mutableStateOf("")
-
-
     var pokemondataList = mutableStateListOf<PokemonDataResponse>()
-
-    var pokemon by mutableStateOf(PokemonDataResponse)
-    fun getPokemonByName(name: String){
-        loading = true
-        viewModelScope.launch {
-                try {
-                    val pokemonData = apiService.getPokemon(name)
-//                    pokemon = pokemonData
-                } catch (e: UnknownHostException) {
-                    errorMessage = "Received error while fetching Pokemon data for name"
-                    e.printStackTrace()
-                }
-                catch (e: Exception){
-                    errorMessage = "Error in fetching pokemon list"
-                    e.printStackTrace()
-                }
-            }
-        loading = false
-        }
     init {
         getAllPokemons()
     }
-
     private fun getAllPokemons(){
         loading = true
         viewModelScope.launch {
             var pokemonNameList = apiService.getAllPokemon()
-//            Log.d(TAG, "PokemonNameList: ${pokemonNameList.results.size}")
             pokemonNameList.results.forEach {
                 try {
                     val pokemonData = apiService.getPokemon(it.name)
-//                    Log.d(TAG, "getPokemons: ${pokemonData}")
                     pokemondataList.add(pokemonData)
-//                    Log.d(TAG, "getAllPokemons: ${pokemondataList}")
                 } catch (e: UnknownHostException) {
                     errorMessage = "Received error while fetching Pokemon data for name"
                     e.printStackTrace()
                 }
                 catch (e: Exception){
                     errorMessage = "Error in fetching pokemon list"
-//                    Log.d(TAG, "Error in fetching pokemon list: ${e.message}")
                     e.printStackTrace()
                 }
             }
