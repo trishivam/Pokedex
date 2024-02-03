@@ -27,6 +27,7 @@ fun NavigationHost(
         ) { entry ->
             PokedexHomeScreen(){
                 navController.navigate(route = "${Routes.PokedexInfoScreen.name}/${it}")
+
             }
         }
         composable(

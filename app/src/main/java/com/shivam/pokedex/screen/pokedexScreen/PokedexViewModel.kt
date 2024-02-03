@@ -23,8 +23,9 @@ class PokedexViewModel @Inject constructor(
     init {
         getAllPokemons()
     }
-    private fun getAllPokemons(){
+    fun getAllPokemons(){
         loading = true
+        errorMessage = ""
         viewModelScope.launch {
             var pokemonNameList = apiService.getAllPokemon()
             pokemonNameList.results.forEach {

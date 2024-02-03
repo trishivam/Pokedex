@@ -27,9 +27,8 @@ class PokemonDetailsViewModel @Inject constructor(
         viewModelScope.launch {
             try {
                 var data = apiService.getPokemon(name = name)
-                Log.d(TAG, "getPokemonInfo: ${data}")
+
                 pokemoninfo = data
-                Log.d(TAG, "getPokemonInformation: ${pokemoninfo}")
             }
             catch (e: UnknownHostException) {
                 errorMessage = "Check your Internet"

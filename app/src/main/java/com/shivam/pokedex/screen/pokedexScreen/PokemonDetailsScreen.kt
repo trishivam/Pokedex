@@ -57,20 +57,19 @@ fun PokemonDetailsScreen(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(top = 10.dp)
+            ) {IconButton(
+                onClick = { onBackButtonClicked }
             ) {
-                IconButton(
-                    onClick = { onBackButtonClicked }
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = "Back",
-                        tint = Color.Black,
-                        modifier = Modifier.clickable(
-                            onClick = onBackButtonClicked
+                Icon(
+                    imageVector = Icons.Filled.ArrowBack,
+                    contentDescription = "Back",
+                    tint = Color.Black,
+                    modifier = Modifier.clickable(
+                        onClick = onBackButtonClicked
 
-                        )
                     )
-                }
+                )
+            }
                 Text(
                     text = "Pokedex",
                     color = Color.Black,
@@ -110,6 +109,7 @@ fun PokemonDetailsScreen(
                     .size(320.dp)
             )
         }
+
         Column(
             modifier = Modifier
                 .weight(2f)
